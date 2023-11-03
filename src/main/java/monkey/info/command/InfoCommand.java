@@ -40,7 +40,7 @@ public class InfoCommand implements ModInitializer {
 
 				Messenger.m(
 					c.getSource(),
-					"g TPS: ", String.format(Locale.US, "%s %.1f",color, getTPS(MSPT)),
+					"g TPS: ", String.format(Locale.US, "%s %.1f", color, getTPS(MSPT)),
 					"g  MSPT: ", String.format(Locale.US,"%s %.1f", color, MSPT)
 				);
 				return (int) TickSpeed.tickrate;
