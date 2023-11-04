@@ -2,9 +2,7 @@
   "required": true,
   "package": "monkey.info.command.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "InfoCommandMix"
-  ],
+  "mixins": [],
   "injectors": {
     "defaultRequire": 1
   }

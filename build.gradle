@@ -31,6 +31,10 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "carpet:fabric-carpet:${project.minecraft_version}-${project.carpet_core_version}"
 
+    implementation "io.prometheus:prometheus-metrics-core:${project.prometheus_version}"
+    implementation "io.prometheus:prometheus-metrics-instrumentation-jvm:${project.prometheus_version}"
+    implementation "io.prometheus:prometheus-metrics-exporter-httpserver:${project.prometheus_version}"
+
     // Uncomment the following line to enable the deprecated Fabric API modules.
     // These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
