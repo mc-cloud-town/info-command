@@ -9,7 +9,7 @@ public abstract class Metric {
 
     public Metric(String name, String help, String... labels) {
         this.name = name;
-        this.gauge = Gauge.builder().name("minecraft_" + name).help(help).labelNames(labels).register();
+        this.gauge = Gauge.builder().name("minecraft_" + name).help(help).labelNames(labels).build();
     }
 
     public abstract void update(MinecraftServer server);
