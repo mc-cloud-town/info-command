@@ -13,12 +13,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CommandManager.class)
 public class InfoCommandMix {
-	@Final
-	@Shadow
-	private CommandDispatcher<ServerCommandSource> dispatcher;
+    @Final
+    @Shadow
+    private CommandDispatcher<ServerCommandSource> dispatcher;
 
-	@Inject(method = "<init>", at = @At("RETURN"))
-	private void onRegister(CommandManager.RegistrationEnvironment arg, CallbackInfo ci) {
-		InfoCommand.register(this.dispatcher, arg);
-	}
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void onRegister(CommandManager.RegistrationEnvironment arg, CallbackInfo ci) {
+        InfoCommand.register(this.dispatcher, arg);
+    }
 }
