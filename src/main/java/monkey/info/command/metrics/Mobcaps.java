@@ -18,15 +18,16 @@ public class Mobcaps extends Metric {
     public void update(MinecraftServer server) {
         // edit from: https://github.com/gnembon/fabric-carpet/blob/7486670918f733aaf6ae3b595290947802024d02/src/main/java/carpet/utils/SpawnReporter.java#L105
         for (ServerWorld world : server.getWorlds()) {
-            RegistryKey<World> dim = world.getRegistryKey();
             SpawnHelper.Info lastSpawner = world.getChunkManager().getSpawnInfo();
-            int chunkcount = SpawnReporter.chunkCounts.getOrDefault(dim, -1);
 
             if (lastSpawner != null) {
+                RegistryKey<World> dim = world.getRegistryKey();
+                String worldName = world.getRegistryKey().getValue().toString();
+                int chunkcount = SpawnReporter.chunkCounts.getOrDefault(dim, -1);
+
                 for (SpawnGroup enumcreaturetype : SpawnGroup.values()) {
                     Object2IntMap<SpawnGroup> dimCounts = lastSpawner.getGroupToCount();
                     String enumcreature = enumcreaturetype.toString();
-                    String worldName = world.getRegistryKey().getValue().toString();
 
                     int cur = dimCounts.getOrDefault(enumcreaturetype, -1);
                     int max = (int) (chunkcount * ((double) enumcreaturetype.getCapacity() / SpawnReporter.currentMagicNumber()));

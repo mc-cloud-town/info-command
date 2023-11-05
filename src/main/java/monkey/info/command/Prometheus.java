@@ -5,6 +5,7 @@ import io.prometheus.metrics.instrumentation.jvm.JvmMetrics;
 import io.prometheus.metrics.model.registry.PrometheusRegistry;
 import monkey.info.command.metrics.Metric;
 import monkey.info.command.metrics.Mobcaps;
+import monkey.info.command.metrics.Player;
 import monkey.info.command.metrics.Tick;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,8 +40,9 @@ public class Prometheus extends TimerTask {
 
     public void start() {
         this.stop();
-        this.registerMetric(new Tick());
         this.registerMetric(new Mobcaps());
+        this.registerMetric(new Player());
+        this.registerMetric(new Tick());
 
         if (metricUpdateLoop == null) metricUpdateLoop = new Timer("Metric Update Loop");
         metricUpdateLoop.scheduleAtFixedRate(new TimerTask() {
