@@ -7,7 +7,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import monkey.info.command.metrics.Tick;
 import monkey.info.command.utils.CarpetExtraTranslations;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
 import org.apache.logging.log4j.LogManager;
@@ -28,7 +27,6 @@ public class InfoCommand implements CarpetExtension, ModInitializer {
     @Override
     public void onInitialize() {
         CarpetServer.manageExtension(new InfoCommand());
-        ServerLifecycleEvents.SERVER_STARTING.register(server -> InfoCommand.server = server);
     }
 
     @Override
@@ -38,6 +36,7 @@ public class InfoCommand implements CarpetExtension, ModInitializer {
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
+        InfoCommand.server = server;
         this.prometheus.start();
     }
 

@@ -47,7 +47,6 @@ public class Prometheus extends TimerTask {
             @Override
             public void run() {
                 if (InfoCommand.server == null || !InfoCommandSettings.prometheusEnable) return;
-                InfoCommand.LOGGER.info("tick");
 
                 for (Metric metric : getMetrics()) {
                     try {
