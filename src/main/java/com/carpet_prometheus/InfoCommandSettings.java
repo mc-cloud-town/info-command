@@ -1,4 +1,4 @@
-package monkey.info.command;
+package com.carpet_prometheus;
 
 import carpet.settings.ParsedRule;
 import carpet.settings.Rule;

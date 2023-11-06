@@ -1,11 +1,12 @@
-package monkey.info.command;
+package com.carpet_prometheus;
+
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.ParsedRule;
+import com.carpet_prometheus.metrics.Tick;
+import com.carpet_prometheus.utils.CarpetExtraTranslations;
 import com.mojang.brigadier.CommandDispatcher;
-import monkey.info.command.metrics.Tick;
-import monkey.info.command.utils.CarpetExtraTranslations;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;

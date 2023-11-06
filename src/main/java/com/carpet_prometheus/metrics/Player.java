@@ -1,4 +1,4 @@
-package monkey.info.command.metrics;
+package com.carpet_prometheus.metrics;
 
 import carpet.patches.EntityPlayerMPFake;
 import net.minecraft.server.MinecraftServer;

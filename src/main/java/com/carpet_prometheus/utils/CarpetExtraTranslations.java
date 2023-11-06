@@ -1,4 +1,4 @@
-package monkey.info.command.utils;
+package com.carpet_prometheus.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

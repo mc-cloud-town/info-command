@@ -1,4 +1,4 @@
-package monkey.info.command.metrics;
+package com.carpet_prometheus.metrics;
 
 import carpet.utils.SpawnReporter;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;

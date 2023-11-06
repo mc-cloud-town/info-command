@@ -1,12 +1,12 @@
-package monkey.info.command;
+package com.carpet_prometheus;
 
+import com.carpet_prometheus.metrics.Metric;
+import com.carpet_prometheus.metrics.Mobcaps;
+import com.carpet_prometheus.metrics.Player;
+import com.carpet_prometheus.metrics.Tick;
 import io.prometheus.metrics.exporter.httpserver.HTTPServer;
 import io.prometheus.metrics.instrumentation.jvm.JvmMetrics;
 import io.prometheus.metrics.model.registry.PrometheusRegistry;
-import monkey.info.command.metrics.Metric;
-import monkey.info.command.metrics.Mobcaps;
-import monkey.info.command.metrics.Player;
-import monkey.info.command.metrics.Tick;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
