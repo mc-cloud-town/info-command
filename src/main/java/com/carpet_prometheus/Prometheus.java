@@ -27,13 +27,13 @@ public class Prometheus extends TimerTask {
 
     @Override
     public void run() {
-        if (InfoCommand.server == null || !InfoCommandSettings.prometheusEnable) return;
+        if (CarpetPrometheus.server == null || !InfoCommandSettings.prometheusEnable) return;
 
         for (Metric metric : this.getMetrics()) {
             try {
-                metric.update(InfoCommand.server);
+                metric.update(CarpetPrometheus.server);
             } catch (Exception e) {
-                InfoCommand.LOGGER.error("Error updating metric " + metric.getName(), e);
+                CarpetPrometheus.LOGGER.error("Error updating metric " + metric.getName(), e);
             }
         }
     }
@@ -48,13 +48,13 @@ public class Prometheus extends TimerTask {
         metricUpdateLoop.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (InfoCommand.server == null || !InfoCommandSettings.prometheusEnable) return;
+                if (CarpetPrometheus.server == null || !InfoCommandSettings.prometheusEnable) return;
 
                 for (Metric metric : getMetrics()) {
                     try {
-                        metric.update(InfoCommand.server);
+                        metric.update(CarpetPrometheus.server);
                     } catch (Exception e) {
-                        InfoCommand.LOGGER.error("Error updating metric " + metric.getName(), e);
+                        CarpetPrometheus.LOGGER.error("Error updating metric " + metric.getName(), e);
                     }
                 }
             }
@@ -66,7 +66,7 @@ public class Prometheus extends TimerTask {
                     .registry(registry)
                     .buildAndStart();
         } catch (Exception e) {
-            InfoCommand.LOGGER.error("Start HttpServer error:", e);
+            CarpetPrometheus.LOGGER.error("Start HttpServer error:", e);
         }
     }
 
