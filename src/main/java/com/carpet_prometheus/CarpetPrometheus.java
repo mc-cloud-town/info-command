@@ -53,7 +53,6 @@ public class CarpetPrometheus implements CarpetExtension, ModInitializer {
         CarpetServer.settingsManager.addRuleObserver(new OnConfigChange(this));
     }
 
-
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return CarpetExtraTranslations.getTranslationFromResourcePath(lang);
@@ -75,7 +74,6 @@ public class CarpetPrometheus implements CarpetExtension, ModInitializer {
     private record OnConfigChange(
             CarpetPrometheus infoCommand
     ) implements TriConsumer<ServerCommandSource, ParsedRule<?>, String> {
-
         @Override
         public void accept(ServerCommandSource serverCommandSource, ParsedRule<?> parsedRule, String s) {
             if (!parsedRule.categories.contains(InfoCommandSettings.INFO_COMMAND)) {
