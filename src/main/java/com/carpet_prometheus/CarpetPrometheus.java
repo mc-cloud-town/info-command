@@ -39,7 +39,7 @@ public class CarpetPrometheus implements CarpetExtension, ModInitializer {
     @Override
     public void onServerLoaded(MinecraftServer server) {
         CarpetPrometheus.server = server;
-        this.prometheus.start();
+        try_start();
     }
 
     @Override
