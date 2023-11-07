@@ -19,6 +19,7 @@ public class Prometheus extends TimerTask {
     private final PrometheusRegistry registry;
     private @Nullable Timer metricUpdateLoop;
     private @Nullable HTTPServer httpServer;
+    private int _oldInterval;
 
     public Prometheus() {
         registry = new PrometheusRegistry();
@@ -45,6 +46,7 @@ public class Prometheus extends TimerTask {
         this.registerMetric(new Tick());
 
         if (metricUpdateLoop == null) metricUpdateLoop = new Timer("Metric Update Loop");
+        _oldInterval = InfoCommandSettings.prometheusUpdateInterval;
         metricUpdateLoop.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -58,7 +60,7 @@ public class Prometheus extends TimerTask {
                     }
                 }
             }
-        }, 0, InfoCommandSettings.prometheusUpdateInterval);
+        }, 0, _oldInterval);
 
         try {
             httpServer = HTTPServer.builder()
@@ -95,5 +97,13 @@ public class Prometheus extends TimerTask {
 
     public List<Metric> getMetrics() {
         return metrics;
+    }
+
+    public @Nullable HTTPServer getHttpServer() {
+        return httpServer;
+    }
+
+    public int getOldIInterval() {
+        return _oldInterval;
     }
 }

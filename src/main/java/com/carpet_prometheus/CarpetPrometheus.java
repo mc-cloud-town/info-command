@@ -7,6 +7,7 @@ import carpet.settings.ParsedRule;
 import com.carpet_prometheus.metrics.Tick;
 import com.carpet_prometheus.utils.CarpetExtraTranslations;
 import com.mojang.brigadier.CommandDispatcher;
+import io.prometheus.metrics.exporter.httpserver.HTTPServer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
@@ -56,6 +57,19 @@ public class CarpetPrometheus implements CarpetExtension, ModInitializer {
     @Override
     public Map<String, String> canHasTranslations(String lang) {
         return CarpetExtraTranslations.getTranslationFromResourcePath(lang);
+    }
+
+    public void try_start() {
+        HTTPServer server = prometheus.getHttpServer();
+        if (!InfoCommandSettings.prometheusEnable) {
+            prometheus.stop();
+            return;
+        }
+
+        if (server == null ||
+                InfoCommandSettings.prometheusPort != server.getPort() ||
+                InfoCommandSettings.prometheusUpdateInterval != prometheus.getOldIInterval()
+        ) prometheus.start();
     }
 
     private record OnConfigChange(
