@@ -1,9 +1,0 @@
-{
-  "category.info-command": "Info Command",
-  "rule.prometheusEnable.name": "启用 prometheus",
-  "rule.prometheusEnable.desc": "启用 prometheus",
-  "rule.prometheusPort.name": "prometheus port",
-  "rule.prometheusPort.desc": "prometheus 的监听端口",
-  "rule.prometheusUpdateInterval.name": "prometheus 更新间隔",
-  "rule.prometheusUpdateInterval.desc": "prometheus 的数据更新间隔"
-}

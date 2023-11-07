@@ -1,11 +1,12 @@
-package monkey.info.command;
+package com.carpet_prometheus;
+
 
 import carpet.CarpetExtension;
 import carpet.CarpetServer;
 import carpet.settings.ParsedRule;
+import com.carpet_prometheus.metrics.Tick;
+import com.carpet_prometheus.utils.CarpetExtraTranslations;
 import com.mojang.brigadier.CommandDispatcher;
-import monkey.info.command.metrics.Tick;
-import monkey.info.command.utils.CarpetExtraTranslations;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.command.ServerCommandSource;
@@ -15,18 +16,18 @@ import org.apache.logging.log4j.util.TriConsumer;
 
 import java.util.Map;
 
-public class InfoCommand implements CarpetExtension, ModInitializer {
+public class CarpetPrometheus implements CarpetExtension, ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("info-command");
     public static MinecraftServer server;
     public final Prometheus prometheus;
 
-    public InfoCommand() {
+    public CarpetPrometheus() {
         prometheus = new Prometheus();
     }
 
     @Override
     public void onInitialize() {
-        CarpetServer.manageExtension(new InfoCommand());
+        CarpetServer.manageExtension(this);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class InfoCommand implements CarpetExtension, ModInitializer {
 
     @Override
     public void onServerLoaded(MinecraftServer server) {
-        InfoCommand.server = server;
+        CarpetPrometheus.server = server;
         this.prometheus.start();
     }
 
@@ -58,7 +59,7 @@ public class InfoCommand implements CarpetExtension, ModInitializer {
     }
 
     private record OnConfigChange(
-            InfoCommand infoCommand
+            CarpetPrometheus infoCommand
     ) implements TriConsumer<ServerCommandSource, ParsedRule<?>, String> {
 
         @Override

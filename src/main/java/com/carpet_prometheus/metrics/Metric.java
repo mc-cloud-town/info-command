@@ -1,4 +1,4 @@
-package monkey.info.command.metrics;
+package com.carpet_prometheus.metrics;
 
 import io.prometheus.metrics.core.metrics.Gauge;
 import net.minecraft.server.MinecraftServer;

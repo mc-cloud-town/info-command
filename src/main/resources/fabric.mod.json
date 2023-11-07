@@ -1,34 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "info-command",
+  "id": "carpet_prometheus",
   "version": "${version}",
-  "name": "InfoCommand",
-  "description": "An extension for data directives related to Info",
+  "name": "carpet_prometheus",
+  "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "a3510377"
+    "Me!"
   ],
   "contact": {
-    "homepage": "https://github.com/mc-cloud-town/info-command",
-    "issues": "https://github.com/mc-cloud-town/info-command/issues",
-    "sources": "https://github.com/mc-cloud-town/info-command"
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
   "license": "CC0-1.0",
-  "icon": "assets/info-command/icon.png",
+  "icon": "assets/carpet_prometheus/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "monkey.info.command.InfoCommand"
+      "com.carpet_prometheus.CarpetPrometheus"
     ]
   },
   "mixins": [
-    "info-command.mixins.json"
+    "carpet_prometheus.mixins.json"
   ],
   "depends": {
-    "minecraft": "~1.17.x",
-    "fabric": "*",
-    "carpet": ">=1.4.0"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "minecraft": "1.17.x"
   }
 }
