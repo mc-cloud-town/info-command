@@ -14,7 +14,7 @@ import java.util.Map;
 // from https://github.com/gnembon/carpet-extra/blob/70ac69d9095a1cf0cfbc6f1f8e49fed84d012a90/src/main/java/carpetextra/utils/CarpetExtraTranslations.java
 public class CarpetExtraTranslations {
     public static Map<String, String> getTranslationFromResourcePath(String lang) {
-        InputStream langFile = CarpetExtraTranslations.class.getClassLoader().getResourceAsStream("assets/info-command/lang/%s.json".formatted(lang));
+        InputStream langFile = CarpetExtraTranslations.class.getClassLoader().getResourceAsStream("assets/carpet_prometheus/lang/%s.json".formatted(lang));
         if (langFile == null) {
             // we don't have that language
             return Collections.emptyMap();
