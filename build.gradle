@@ -1,4 +1,6 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+
     id 'fabric-loom' version '1.4-SNAPSHOT'
     id 'maven-publish'
 }
@@ -32,13 +34,10 @@ dependencies {
     implementation "io.prometheus:prometheus-metrics-core:${project.prometheus_version}"
     implementation "io.prometheus:prometheus-metrics-instrumentation-jvm:${project.prometheus_version}"
     implementation "io.prometheus:prometheus-metrics-exporter-httpserver:${project.prometheus_version}"
-    implementation "io.prometheus:prometheus-metrics-model:${project.prometheus_version}"
-    implementation "io.prometheus:prometheus-metrics-config:${project.prometheus_version}"
-    include "io.prometheus:prometheus-metrics-core:${project.prometheus_version}"
-    include "io.prometheus:prometheus-metrics-instrumentation-jvm:${project.prometheus_version}"
-    include "io.prometheus:prometheus-metrics-exporter-httpserver:${project.prometheus_version}"
-    include "io.prometheus:prometheus-metrics-model:${project.prometheus_version}"
-    include "io.prometheus:prometheus-metrics-config:${project.prometheus_version}"
+
+    shadow "io.prometheus:prometheus-metrics-core:${project.prometheus_version}"
+    shadow "io.prometheus:prometheus-metrics-instrumentation-jvm:${project.prometheus_version}"
+    shadow "io.prometheus:prometheus-metrics-exporter-httpserver:${project.prometheus_version}"
 
     // Uncomment the following line to enable the deprecated Fabric API modules.
     // These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
@@ -54,8 +53,21 @@ processResources {
     }
 }
 
+shadowJar {
+    configurations = [project.configurations.shadow]
+    exclude("META-INF")
+}
+
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 17
+}
+
+remapJar {
+    // wait until the shadowJar is done
+    dependsOn(shadowJar)
+    mustRunAfter(shadowJar)
+    // Set the input jar for the task. Here use the shadow Jar that include the .class of the transitive dependency
+    inputFile = file(shadowJar.archivePath)
 }
 
 java {
