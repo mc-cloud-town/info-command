@@ -14,7 +14,6 @@ public class InfoCommandSettings {
     )
     public static boolean prometheusEnable = false;
     @Rule(
-            options = {"9060", "9061", "9062", "9063"},
             category = {INFO_COMMAND},
             desc = "prometheus server port",
             validate = ValidatePrometheusPort.class
