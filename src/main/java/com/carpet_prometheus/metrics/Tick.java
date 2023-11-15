@@ -47,5 +47,6 @@ public class Tick extends Metric {
 
         this.getGauge().labelValues("mspt").set(mspt);
         this.getGauge().labelValues("tps").set(getTPS(mspt));
+        this.getGauge().labelValues("BASE").set(TickSpeed.mspt);
     }
 }
